@@ -1,0 +1,13 @@
+name: 'Project Appointment'
+type: module
+description: 'A custom module for scheduling project Appointments.'
+core_version_requirement: ^9 || ^10
+package: Custom
+dependencies: 
+  - drupal:datetime
+  - smtp:smtp
+  - drupal:calendar_view
+  - drupal:calendar_view_demo
+libraries:
+  - project_appointment/appointment_calendar
+

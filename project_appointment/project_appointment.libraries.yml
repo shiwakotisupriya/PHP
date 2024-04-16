@@ -1,0 +1,21 @@
+appointment_calendar:
+  version: 1.0
+  js:
+    js/project_appointment.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+  css:
+    theme:
+      css/design.css: {}
+
+      # calendar_css:
+#   css:
+#     theme:
+#       css/design.css
+
+# calendar:
+#   version: VERSION
+#   css:
+#     component:
+#       css/design.css: {}

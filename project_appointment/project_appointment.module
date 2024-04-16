@@ -1,0 +1,63 @@
+<?php
+use Drupal\views\EntityViewsDataInterface;
+use Drupal\views\Views;
+
+/**
+ * Implements hook_views_data().
+ */
+function project_appointment_views_data() {
+  $data = [];
+  $table = 'project_appointment';
+  
+  $data[$table]['table']['group'] = \Drupal::translation()->translate('Project Appointment');
+  $data[$table]['table']['base'] = [
+    'field' => 'id',
+    'title' => \Drupal::translation()->translate('Project Appointment'),
+    'help' => \Drupal::translation()->translate('Contains data about project appointments.'), 
+    'weight' => -10, 
+  ];
+ $data[$table]['appointment_name'] = [
+    'title' => \Drupal::translation()->translate('Appointment Name'),
+    'help' => \Drupal::translation()->translate('The name of the appointment.'),
+    'field' => [
+      'id' => 'standard', 
+    ],
+    'filter' => [
+      'id' => 'string', 
+    ],
+    'sort' => [
+      'id' => 'standard', 
+    ],
+  ];
+
+  
+  return $data;
+}
+
+
+
+
+/**
+ * Sends a confirmation email for an appointment.
+ */
+function project_appointment_send_confirmation_mail($to, $name, $date) {
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'project_appointment';
+  $key = 'appointment_confirmation';
+  $params['name'] = $name;
+  $params['date'] = $date;
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = true;
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if ($result['result'] !== true) {
+      \Drupal::messenger()->addError(\Drupal::translation()->translate('There was a problem sending your message and it was not sent.'));
+  } else {
+      \Drupal::messenger()->addMessage(\Drupal::translation()->translate('Your confirmation message has been sent.'));
+  }
+}
+
+
+
+
+

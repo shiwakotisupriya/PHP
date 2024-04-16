@@ -1,0 +1,69 @@
+<?php
+
+function project_appointment_schema() {
+    $schema['project_appointment'] = [
+        'description' => 'Stores appointment details.',
+        'fields' => [
+            'id' => [
+                'description' => 'The primary identifier for an appointment.',
+                'mysql_type' => 'serial', // This automatically implies 'not null' and 'auto_increment'.
+                'not null' => TRUE,
+            ],
+            'appointment_name' => [
+                'description' => 'A name for an appointment.',
+                'mysql_type' => 'text',
+                'not null' => TRUE,
+            ],
+            'appointment_date' => [
+                'description' => 'The date and time of the appointment.',
+                'mysql_type' => 'timestamp',
+                'not null' => TRUE,
+            ],
+            'appointment_duration' => [
+                'description' => 'The duration of the appointment in seconds.',
+                'mysql_type' => 'int', // Assuming the duration won't exceed the max int value.
+                'not null' => TRUE,
+                'default' => 0, // You might want to set a default value or ensure it's provided upon appointment creation.
+                'size' => 'normal', // 'normal' is default for int, explicitly stating it for clarity.
+            ],
+            'appointment_timezone' => [
+                'description' => 'The timezone of the appointment.',
+                'mysql_type' => 'varchar',
+                'length' => 255, // Maximum length for a timezone string
+                'not null' => TRUE,
+            ],
+            'appointment_platform' =>[
+                'description' => 'The Platform for the appointment.',
+                'mysql_type' => 'varchar', // Assuming the duration won't exceed the max int value.
+                'not null' => TRUE,
+                'length' => 255,
+            ],
+            'project_details' => [
+                'description' => 'Details of the project discussed in the appointment.',
+                'mysql_type' => 'text',
+                'not null' => TRUE,
+            ],
+            'name' => [
+                'description' => 'A comma-separated list of participant names.',
+                'mysql_type' => 'text',
+                'not null' => TRUE,
+            ],
+            'participants' => [
+                'description' => 'A comma-separated list of participant emails.',
+                'mysql_type' => 'text',
+                'not null' => TRUE,
+            ],
+            'completed' => [
+                'description' => 'Whether the appointment has been marked as completed.',
+                'mysql_type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'size' => 'tiny',
+            ],
+        ],
+        'primary key' => ['id'],
+    ];
+
+    return $schema;
+}
+?>

@@ -1,0 +1,56 @@
+project_appointment.form:
+  path: '/appointment'
+  defaults:
+    _form: '\Drupal\project_appointment\Form\AppointmentForm'
+    _title: 'Schedule an Appointment'
+  requirements:
+    _permission: 'schedule appointments' # Updated permission
+
+project_appointment.admin_appointments:
+  path: '/admin/appointments'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::viewAppointments'
+    _title: 'View Appointments'
+  requirements:
+    _permission: 'administer appointments'
+
+project_appointment.mark_completed:
+  path: '/admin/appointments/complete/{id}'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::markCompleted'
+    _title: 'Mark Appointment as Completed'
+  requirements:
+    _permission: 'administer appointments'
+
+project_appointment.completed_appointments:
+  path: '/admin/completed-appointments'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::completedAppointments'
+    _title: 'Completed Appointments'
+  requirements:
+    _permission: 'access content'
+
+
+project_appointment.delete:
+  path: '/admin/appointments/delete/{id}'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::delete'
+    _title: 'Delete Appointment'
+  requirements:
+    _permission: 'administer appointments'
+
+project_appointment.editorial_calendar:
+  path: '/appointment/editorial-calendar'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::viewEditorialCalendar'
+    _title: 'Editorial Calendar'
+  requirements:
+    _permission: 'access content'
+
+project_appointment.appointments_data:
+  path: '/appointments/data'
+  defaults:
+    _controller: '\Drupal\project_appointment\Controller\AppointmentController::getAppointmentsData'
+  methods:  [GET]
+  requirements:
+    _permission: 'access content'

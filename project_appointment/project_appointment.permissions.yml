@@ -1,0 +1,7 @@
+schedule appointments:
+  title: 'Schedule appointments'
+  description: 'Allow users to schedule appointments.'
+
+administer appointments:
+  title: 'Administer appointments'
+  description: 'Allows users to view and manage all booked appointments.'

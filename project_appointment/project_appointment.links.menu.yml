@@ -1,0 +1,6 @@
+project_appointment.admin_appointments_link:
+  title: 'View Appointments'
+  parent: system.admin_content
+  route_name: project_appointment.admin_appointments
+  description: 'View all booked appointments.'
+  weight: 100
